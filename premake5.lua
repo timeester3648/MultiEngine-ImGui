@@ -9,8 +9,8 @@ project "ImGui"
 	inlining "Auto"
 
 	files {
-		"./**.h",
-		"./**.cpp"
+		"./*.h",
+		"./*.cpp"
 	}
 
 	includedirs {
