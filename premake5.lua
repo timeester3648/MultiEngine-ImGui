@@ -14,9 +14,13 @@ project "ImGui"
 	}
 
 	includedirs {
+		"%{IncludeDir.fmt}",
+		"%{IncludeDir.mle}",
 		"%{IncludeDir.stb}",
 		"%{IncludeDir.fmt}",
 		"%{IncludeDir.glfw}",
+		"%{IncludeDir.boost}",
+		"%{IncludeDir.spdlog}",
 		"%{IncludeDir.general_includes}"
 	}
 

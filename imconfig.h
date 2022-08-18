@@ -83,10 +83,20 @@
 //#define IM_DEBUG_BREAK  IM_ASSERT(0)
 
 #ifdef MLE_DEBUG_BUILD
-#define IM_DEBUG_BREAK()  assert(false)
+    #define IM_DEBUG_BREAK()  assert(false)
 #else
-#define IM_DEBUG_BREAK() ((void)0)
+    #define IM_DEBUG_BREAK() ((void)0)
 #endif
+
+#include <MultiEngine/math/geometry/Vectors.h>
+
+#define IM_VEC2_CLASS_EXTRA                                                                                 \
+                            constexpr ImVec2(const MultiEngine::Vector2f& v) : x(v.x), y(v.y) {}            \
+                            constexpr operator MultiEngine::Vector2f() { return { this->x, this->y }; }
+
+#define IM_VEC4_CLASS_EXTRA                                                                                                 \
+                            constexpr ImVec4(const MultiEngine::Vector4f& v) : x(v.x), y(v.y), z(v.z), w(v.w) {}            \
+                            constexpr operator MultiEngine::Vector4f() { return { this->x, this->y, this->z, this->w }; }
 
 //---- Debug Tools: Have the Item Picker break in the ItemAdd() function instead of ItemHoverable(),
 // (which comes earlier in the code, will catch a few extra items, allow picking items other than Hovered one.)
