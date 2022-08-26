@@ -10,7 +10,13 @@ project "ImGui"
 
 	files {
 		"./*.h",
-		"./*.cpp"
+		"./*.cpp",
+
+		"./misc/cpp/*.h",
+		"./misc/freetype/*.h",
+
+		"./misc/cpp/*.cpp",
+		"./misc/freetype/*.cpp"
 	}
 
 	includedirs {
@@ -19,8 +25,10 @@ project "ImGui"
 		"%{IncludeDir.stb}",
 		"%{IncludeDir.fmt}",
 		"%{IncludeDir.glfw}",
+		"%{IncludeDir.imgui}",
 		"%{IncludeDir.boost}",
 		"%{IncludeDir.spdlog}",
+		"%{IncludeDir.freetype}",
 		"%{IncludeDir.general_includes}"
 	}
 
