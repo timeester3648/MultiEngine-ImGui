@@ -29,6 +29,7 @@ project "ImGui"
 		"%{IncludeDir.boost}",
 		"%{IncludeDir.spdlog}",
 		"%{IncludeDir.freetype}",
+		"%{IncludeDir.magic_enum}",
 		"%{IncludeDir.intrinsics}",
 		"%{IncludeDir.general_includes}"
 	}
