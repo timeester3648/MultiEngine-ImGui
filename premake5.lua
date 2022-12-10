@@ -37,5 +37,5 @@ project "ImGui"
  	filter "system:windows"
 		includedirs { "%{IncludeDir.general_includes}/windirent" }
 
-	filter "action:vs*"
+	filter "toolset:msc"
 		disablewarnings { "4267", "4996" }
