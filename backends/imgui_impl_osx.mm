@@ -25,7 +25,7 @@
 
 // CHANGELOG
 // (minor and older changes stripped away, please see git history for details)
-//  2022-XX-XX: Added support for multiple windows via the ImGuiPlatformIO interface.
+//  2023-XX-XX: Added support for multiple windows via the ImGuiPlatformIO interface.
 //  2022-11-02: Fixed mouse coordinates before clicking the host window.
 //  2022-10-06: Fixed mouse inputs on flipped views.
 //  2022-09-26: Inputs: Renamed ImGuiKey_ModXXX introduced in 1.87 to ImGuiMod_XXX (old names still supported).
@@ -816,7 +816,7 @@ struct ImGuiViewportDataOSX
 
 static void ConvertNSRect(NSScreen* screen, NSRect* r)
 {
-    r->origin.y = CGDisplayPixelsHigh(kCGDirectMainDisplay) - r->origin.y - r->size.height;
+    r->origin.y = screen.frame.size.height - r->origin.y - r->size.height;
 }
 
 static void ImGui_ImplOSX_CreateWindow(ImGuiViewport* viewport)
@@ -924,7 +924,7 @@ static ImVec2 ImGui_ImplOSX_GetWindowSize(ImGuiViewport* viewport)
 
     NSWindow* window = data->Window;
     NSSize size = window.contentLayoutRect.size;
-    return ImVec2(size.width, size.width);
+    return ImVec2(size.width, size.height);
 }
 
 static void ImGui_ImplOSX_SetWindowSize(ImGuiViewport* viewport, ImVec2 size)
