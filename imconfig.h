@@ -84,7 +84,7 @@
 //#define IM_DEBUG_BREAK  IM_ASSERT(0)
 
 #ifdef MLE_DEBUG_BUILD
-    #define IM_DEBUG_BREAK()  assert(false)
+    #define IM_DEBUG_BREAK()  MLE_DEBUGBREAK()
 #else
     #define IM_DEBUG_BREAK() ((void)0)
 #endif
