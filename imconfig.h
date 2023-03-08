@@ -63,10 +63,10 @@
 #define IMGUI_USE_STB_SPRINTF
 #define IMGUI_STB_SPRINTF_FILENAME <stb/stb_sprintf.h>
 
-#define IM_VEC4_CLASS_EXTRA                                                     \
-        constexpr ImVec4(const MyVec4& f) : x(f.x), y(f.y), z(f.z), w(f.w) {}   \
-        operator MyVec4() const { return MyVec4(x,y,z,w); }
-*/
+//#define IM_VEC4_CLASS_EXTRA                                                     \
+//        constexpr ImVec4(const MyVec4& f) : x(f.x), y(f.y), z(f.z), w(f.w) {}   \
+//        operator MyVec4() const { return MyVec4(x,y,z,w); }
+
 //---- ...Or use Dear ImGui's own very basic math operators.
 //#define IMGUI_DEFINE_MATH_OPERATORS
 
@@ -98,12 +98,12 @@
 #include <MultiEngine/math/geometry/Vectors.h>
 
 #define IM_VEC2_CLASS_EXTRA                                                                                                                     \
-                            constexpr ImVec2(const MultiEngine::Vector2f& v) noexcept : x(v.x), y(v.y) {}                                       \
-                            constexpr operator MultiEngine::Vector2f() const noexcept { return { this->x, this->y }; }
+                     inline constexpr ImVec2(const MultiEngine::Vector2f& v) noexcept : x(v.x), y(v.y) {}                                       \
+                     inline constexpr operator MultiEngine::Vector2f() const noexcept { return { this->x, this->y }; }
 
 #define IM_VEC4_CLASS_EXTRA                                                                                                                     \
-                            constexpr ImVec4(const MultiEngine::Vector4f& v) noexcept : x(v.x), y(v.y), z(v.z), w(v.w) {}                       \
-                            constexpr operator MultiEngine::Vector4f() const noexcept { return { this->x, this->y, this->z, this->w }; }
+                     inline constexpr ImVec4(const MultiEngine::Vector4f& v) noexcept : x(v.x), y(v.y), z(v.z), w(v.w) {}                       \
+                     inline constexpr operator MultiEngine::Vector4f() const noexcept { return { this->x, this->y, this->z, this->w }; }
 
 //---- Debug Tools: Enable slower asserts
 //#define IMGUI_DEBUG_PARANOID
