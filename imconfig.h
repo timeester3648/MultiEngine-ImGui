@@ -68,7 +68,7 @@
 //        operator MyVec4() const { return MyVec4(x,y,z,w); }
 
 //---- ...Or use Dear ImGui's own very basic math operators.
-//#define IMGUI_DEFINE_MATH_OPERATORS
+#define IMGUI_DEFINE_MATH_OPERATORS
 
 //---- Use 32-bit vertex indices (default is 16-bit) is one way to allow large meshes with more than 64K vertices.
 // Your renderer back-end will need to support it (most example renderer back-ends support both 16/32-bit indices).
@@ -108,6 +108,7 @@
 //---- Debug Tools: Enable slower asserts
 //#define IMGUI_DEBUG_PARANOID
 
+#define IMGUI_USE_WCHAR32
 #define IMGUI_ENABLE_FREETYPE
 
 //---- Tip: You can add extra functions within the ImGui:: namespace, here or in your own headers files.
