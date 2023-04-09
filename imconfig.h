@@ -111,6 +111,10 @@
 #define IMGUI_USE_WCHAR32
 #define IMGUI_ENABLE_FREETYPE
 
+#include <MultiEngine/core/StaticState.h>
+
+#define GImGui ::MultiEngine::detail::global_state->imgui.current_context
+
 //---- Tip: You can add extra functions within the ImGui:: namespace, here or in your own headers files.
 /*
 namespace ImGui
