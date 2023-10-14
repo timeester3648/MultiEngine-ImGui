@@ -28,6 +28,7 @@ project "ImGui"
 		"%{IncludeDir.imgui}",
 		"%{IncludeDir.boost}",
 		"%{IncludeDir.spdlog}",
+		"%{IncludeDir.lunasvg}",
 		"%{IncludeDir.freetype}",
 		"%{IncludeDir.magic_enum}",
 		"%{IncludeDir.intrinsics}",

@@ -53,7 +53,8 @@
 
 //---- Avoid multiple STB libraries implementations, or redefine path/filenames to prioritize another version
 // By default the embedded implementations are declared static and not available outside of Dear ImGui sources files.
-//#define IMGUI_STB_TRUETYPE_FILENAME   "my_folder/stb_truetype.h"
+#define IMGUI_STB_TRUETYPE_FILENAME <stb_truetype.h>
+// WARNING: imgui needs its own imgui_rect_pack if you want freetype to render correctly
 //#define IMGUI_STB_RECT_PACK_FILENAME  "my_folder/stb_rect_pack.h"
 //#define IMGUI_STB_SPRINTF_FILENAME    "my_folder/stb_sprintf.h"    // only used if IMGUI_USE_STB_SPRINTF is defined.
 //#define IMGUI_DISABLE_STB_TRUETYPE_IMPLEMENTATION
@@ -62,18 +63,19 @@
 
 //---- Use stb_sprintf.h for a faster implementation of vsnprintf instead of the one from libc (unless IMGUI_DISABLE_DEFAULT_FORMAT_FUNCTIONS is defined)
 // Compatibility checks of arguments and formats done by clang and GCC will be disabled in order to support the extra formats provided by stb_sprintf.h.
-//#define IMGUI_USE_STB_SPRINTF
+#define IMGUI_USE_STB_SPRINTF
+#define IMGUI_STB_SPRINTF_FILENAME <stb_sprintf.h>
 
 //---- Use FreeType to build and rasterize the font atlas (instead of stb_truetype which is embedded by default in Dear ImGui)
 // Requires FreeType headers to be available in the include path. Requires program to be compiled with 'misc/freetype/imgui_freetype.cpp' (in this repository) + the FreeType library (not provided).
 // On Windows you may use vcpkg with 'vcpkg install freetype --triplet=x64-windows' + 'vcpkg integrate install'.
-//#define IMGUI_ENABLE_FREETYPE
+#define IMGUI_ENABLE_FREETYPE
 
 //---- Use FreeType+lunasvg library to render OpenType SVG fonts (SVGinOT)
 // Requires lunasvg headers to be available in the include path + program to be linked with the lunasvg library (not provided).
 // Only works in combination with IMGUI_ENABLE_FREETYPE.
 // (implementation is based on Freetype's rsvg-port.c which is licensed under CeCILL-C Free Software License Agreement)
-//#define IMGUI_ENABLE_FREETYPE_LUNASVG
+#define IMGUI_ENABLE_FREETYPE_LUNASVG
 
 //---- Use stb_truetype to build and rasterize the font atlas (default)
 // The only purpose of this define is if you want force compilation of the stb_truetype backend ALONG with the FreeType backend.
@@ -130,13 +132,6 @@
 
 //---- Debug Tools: Enable slower asserts
 //#define IMGUI_DEBUG_PARANOID
-
-#define IMGUI_USE_WCHAR32
-#define IMGUI_ENABLE_FREETYPE
-
-#include <MultiEngine/core/StaticState.h>
-
-#define GImGui ::MultiEngine::detail::global_state->imgui.current_context
 
 #define IMGUI_USE_WCHAR32
 #define IMGUI_ENABLE_FREETYPE
