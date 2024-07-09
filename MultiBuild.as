@@ -9,17 +9,15 @@ void main(MultiBuild::Workspace& workspace) {
 
 	properties.project_includes({
 		"fmt",
-		"mle",
 		"stb",
 		"fmt",
 		"glfw",
-		"imgui",
-		"boost",
+		"Boost",
 		"spdlog",
-		"lunasvg",
-		"freetype",
+		"LunaSVG",
+		"FreeType",
 		"magic_enum",
-		"intrinsics"
+		"Intrinsics"
 	});
 
 	project.include_own_required_includes(true);
