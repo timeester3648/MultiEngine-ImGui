@@ -5,12 +5,11 @@ void main(MultiBuild::Workspace& workspace) {
 	project.name("ImGui");
 	properties.binary_object_kind(MultiBuild::BinaryObjectKind::eStaticLib);
 	project.license("./LICENSE.txt");
-	properties.tags("use_header_only_mle");
+	properties.tags({ "use_header_only_mle", "utf8" });
 
 	properties.project_includes({
 		"fmt",
 		"stb",
-		"fmt",
 		"glfw",
 		"Boost",
 		"spdlog",
