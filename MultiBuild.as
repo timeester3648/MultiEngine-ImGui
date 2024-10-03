@@ -7,18 +7,6 @@ void main(MultiBuild::Workspace& workspace) {
 	project.license("./LICENSE.txt");
 	properties.tags({ "use_header_only_mle", "utf8" });
 
-	properties.project_includes({
-		"fmt",
-		"stb",
-		"glfw",
-		"Boost",
-		"spdlog",
-		"LunaSVG",
-		"FreeType",
-		"magic_enum",
-		"Intrinsics"
-	});
-
 	project.include_own_required_includes(true);
 	project.add_required_project_include({
 		"."
