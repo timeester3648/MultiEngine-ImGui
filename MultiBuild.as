@@ -12,6 +12,8 @@ void main(MultiBuild::Workspace& workspace) {
 		"."
 	});
 
+	properties.dependencies("plutosvg");
+
 	properties.files({
 		"./*.h",
 		"./*.cpp",
