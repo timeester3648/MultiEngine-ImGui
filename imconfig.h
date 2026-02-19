@@ -159,7 +159,7 @@
 //---- Debug Tools: Enable slower asserts
 //#define IMGUI_DEBUG_PARANOID
 
-#include <MultiEngine/gui/imgui/ImGuiContext.h>
+#include <MultiEngine.ImGui/imgui/ImGuiContext.h>
 
 #define GImGui ::MultiEngine::imgui_current_context()
 

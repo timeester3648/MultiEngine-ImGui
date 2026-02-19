@@ -13,6 +13,7 @@ void main(MultiBuild::Workspace& workspace) {
 	});
 
 	properties.dependencies("plutosvg");
+	properties.project_includes("MultiEngine.ImGui");
 
 	properties.files({
 		"./*.h",
