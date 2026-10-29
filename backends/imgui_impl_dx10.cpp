@@ -5,6 +5,7 @@
 //  [X] Renderer: User texture binding. Use 'ID3D10ShaderResourceView*' as texture identifier. Read the FAQ about ImTextureID/ImTextureRef!
 //  [X] Renderer: Large meshes support (64k+ vertices) even with 16-bit indices (ImGuiBackendFlags_RendererHasVtxOffset).
 //  [X] Renderer: Texture updates support for dynamic font atlas (ImGuiBackendFlags_RendererHasTextures).
+//  [X] Renderer: Expose selected render state for draw callbacks to use. Access with ImGui_ImplDX10_GetRenderState().
 //  [X] Renderer: Multi-viewport support (multiple windows). Enable with 'io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable'.
 
 // You can use unmodified imgui_impl_* files in your project. See examples/ folder for examples of using this.
@@ -100,6 +101,11 @@ struct VERTEX_CONSTANT_BUFFER_DX10
 static ImGui_ImplDX10_Data* ImGui_ImplDX10_GetBackendData()
 {
     return ImGui::GetCurrentContext() ? (ImGui_ImplDX10_Data*)ImGui::GetIO().BackendRendererUserData : nullptr;
+}
+
+ImGui_ImplDX10_RenderState* ImGui_ImplDX10_GetRenderState()
+{
+    return (ImGui_ImplDX10_RenderState*)ImGui::GetPlatformIO().Renderer_RenderState;
 }
 
 // Forward Declarations
@@ -768,10 +774,12 @@ static void ImGui_ImplDX10_SetWindowSize(ImGuiViewport* viewport, ImVec2 size)
     }
 }
 
-static void ImGui_ImplDX10_RenderViewport(ImGuiViewport* viewport, void*)
+static void ImGui_ImplDX10_RenderWindow(ImGuiViewport* viewport, void*)
 {
     ImGui_ImplDX10_Data* bd = ImGui_ImplDX10_GetBackendData();
     ImGui_ImplDX10_ViewportData* vd = (ImGui_ImplDX10_ViewportData*)viewport->RendererUserData;
+    if (vd->RTView == nullptr) // Swap chain creation or resize failed (e.g. device removed)
+        return;
     ImVec4 clear_color = ImVec4(0.0f, 0.0f, 0.0f, 1.0f);
     bd->pd3dDevice->OMSetRenderTargets(1, &vd->RTView, nullptr);
     if (!(viewport->Flags & ImGuiViewportFlags_NoRendererClear))
@@ -792,7 +800,7 @@ void ImGui_ImplDX10_InitMultiViewportSupport()
     platform_io.Renderer_CreateWindow = ImGui_ImplDX10_CreateWindow;
     platform_io.Renderer_DestroyWindow = ImGui_ImplDX10_DestroyWindow;
     platform_io.Renderer_SetWindowSize = ImGui_ImplDX10_SetWindowSize;
-    platform_io.Renderer_RenderWindow = ImGui_ImplDX10_RenderViewport;
+    platform_io.Renderer_RenderWindow = ImGui_ImplDX10_RenderWindow;
     platform_io.Renderer_SwapBuffers = ImGui_ImplDX10_SwapBuffers;
 }
 
